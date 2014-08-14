@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "io.ganguo.app.basic"
+        minSdkVersion 10
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.mcxiaoke.volley:library:1.0.6'
+    compile 'com.loopj.android:android-async-http:1.4.5'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.2'
+}
