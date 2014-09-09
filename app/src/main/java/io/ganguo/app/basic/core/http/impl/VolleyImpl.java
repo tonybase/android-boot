@@ -1,6 +1,7 @@
 package io.ganguo.app.basic.core.http.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -8,24 +9,26 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
-import io.ganguo.app.basic.core.cache.Cache;
-import io.ganguo.app.basic.core.cache.CacheManager;
+import io.ganguo.app.basic.core.cache.CacheTime;
 import io.ganguo.app.basic.core.http.HttpConstants;
 import io.ganguo.app.basic.core.http.api.AbstractHttpService;
 import io.ganguo.app.basic.core.http.api.HttpListener;
-import io.ganguo.app.basic.core.http.api.JsonObjectHttpListener;
-import io.ganguo.app.basic.core.http.api.StringHttpListener;
+import io.ganguo.app.basic.exception.NotWebDataException;
+
 
 /**
  * Volley　实现类
- *
+ * <p/>
  * 只对GET请求进行缓存
- *
+ * <p/>
  * Created by zhihui_chen on 14-8-4.
  */
 public class VolleyImpl extends AbstractHttpService {
@@ -40,58 +43,105 @@ public class VolleyImpl extends AbstractHttpService {
     }
 
     /**
+     * GET 网络请求 默认无缓存
+     *
+     * @param url
+     * @param params
+     * @param httpListener
+     */
+    @Override
+    public void doGet(String url, Map<String, String> params, HttpListener<?> httpListener) {
+        doGet(url, params, httpListener, CacheTime.NONE);
+    }
+
+    /**
      * GET 网络请求
      *
      * @param url
-     * @param parms
+     * @param params
      * @param httpListener
      * @param cacheTime
      */
     @Override
-    public void doGet(String url, Map<String, String> parms, HttpListener<?> httpListener, int cacheTime) {
-        String urlWithParams = buildUrlParams(url, parms);
+    public void doGet(String url, Map<String, String> params, HttpListener<?> httpListener, int cacheTime) {
+        httpListener.onStart();
+
+        String urlWithParams = buildUrlParams(url, params);
+        Log.d(TAG, "doGet: " + urlWithParams);
         // 是否已经有缓存了，存在自动返回缓存数据
-        if(fireCache(url, httpListener)) return ;
+        if (cacheTime != 0 && fireCache(url, httpListener)) return;
 
         // 已经有同一URL的请求了，等待自动响应
         if (addQequest(urlWithParams, httpListener)) return;
 
-        if (httpListener instanceof StringHttpListener) {
-            doStringGet(urlWithParams, (HttpListener<String>) httpListener, cacheTime);
-        } else if (httpListener instanceof JsonObjectHttpListener) {
-            // do json request
-        }
+        doStringGet(urlWithParams, httpListener, cacheTime);
     }
 
     /**
      * POST 网络请求
      *
      * @param url
-     * @param parms
+     * @param params
      * @param httpListener
-     * @param cacheTime
      */
     @Override
-    public void doPost(String url, Map<String, String> parms, HttpListener<?> httpListener, int cacheTime) {
+    public void doPost(String url, Map<String, String> params, HttpListener<?> httpListener) {
+        Log.d(TAG, "doPost: " + url + " params:" + params);
+        httpListener.onStart();
+        doStringPost(url, params, httpListener);
+    }
 
-        if (httpListener instanceof StringHttpListener) {
-            doStringPost(url, parms, (HttpListener<String>) httpListener, cacheTime);
-        }
+    /**
+     * POST 网络请求
+     *
+     * @param url
+     * @param jsonObject
+     * @param httpListener
+     */
+    @Override
+    public void doPost(String url, JSONObject jsonObject, final HttpListener<?> httpListener) {
+        Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if(response != null) {
+                    httpListener.handleResponse(response.toString());
+                } else {
+                    httpListener.onFailure("获取请求数据失败", new NotWebDataException("请求数据为空"));
+                    httpListener.onFinish();
+                }
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                httpListener.onFailure(error.getMessage(), error);
+                httpListener.onFinish();
+            }
+
+        };
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, responseListener, errorListener){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return getHeaderMap();
+            }
+        };
+        request.setRetryPolicy(mRetryPolicy);
+        request.setTag(TAG);
+        mRequestQueue.add(request);
     }
 
     /**
      * POST String 网络请求
      *
      * @param url
-     * @param parms
+     * @param params
      * @param httpListener
-     * @param cacheTime
      */
-    public void doStringPost(final String url, final Map<String, String> parms, final HttpListener<String> httpListener, int cacheTime) {
+    private void doStringPost(final String url, final Map<String, String> params, final HttpListener<?> httpListener) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                // notify & add cache
                 httpListener.handleResponse(response);
             }
         };
@@ -100,6 +150,7 @@ public class VolleyImpl extends AbstractHttpService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 httpListener.onFailure(error.getMessage(), error);
+                httpListener.onFinish();
             }
 
         };
@@ -107,7 +158,12 @@ public class VolleyImpl extends AbstractHttpService {
         StringRequest request = new StringRequest(Request.Method.POST, url, responseListener, errorListener) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                return parms;
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return getHeaderMap();
             }
         };
         request.setRetryPolicy(mRetryPolicy);
@@ -121,7 +177,7 @@ public class VolleyImpl extends AbstractHttpService {
      * @param urlWithParams
      * @param httpListener
      */
-    public void doStringGet(final String urlWithParams, final HttpListener<String> httpListener, final int cacheTime) {
+    private void doStringGet(final String urlWithParams, final HttpListener<?> httpListener, final int cacheTime) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -134,13 +190,19 @@ public class VolleyImpl extends AbstractHttpService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // notify
-                sendFailureResponse(urlWithParams, error.networkResponse.statusCode + " ", error);
+                sendFailureResponse(urlWithParams, error.getMessage(), error);
             }
 
         };
-        StringRequest request = new StringRequest(Request.Method.GET, urlWithParams, responseListener, errorListener);
+        StringRequest request = new StringRequest(Request.Method.GET, urlWithParams, responseListener, errorListener) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return getHeaderMap();
+            }
+        };
         request.setRetryPolicy(mRetryPolicy);
         request.setTag(TAG);
         mRequestQueue.add(request);
     }
+
 }

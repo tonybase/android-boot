@@ -50,59 +50,11 @@ public class AppContext extends Application {
         super.onLowMemory();
     }
 
+    /**
+     * 应用退出，由AppManager回调
+     */
     public void onExit() {
 
-    }
-
-    /**
-     * 获取App安装包信息
-     *
-     * @return
-     */
-    public PackageInfo getPackageInfo() {
-        PackageInfo info = null;
-        try {
-            info = getPackageManager().getPackageInfo(getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "程序包名无法找到", e);
-        }
-        if (info == null)
-            info = new PackageInfo();
-        return info;
-    }
-
-    /**
-     * 获取当前程序版本名称
-     */
-    public String getAppVersionName() {
-        String versionName = "";
-        try {
-            // Get the package info
-            PackageManager pm = this.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(getPackageName(), 0);
-            versionName = pi.versionName;
-            if (TextUtils.isEmpty(versionName)) {
-                return "";
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "获取当前程序版本名称", e);
-        }
-        return versionName;
-    }
-
-    /**
-     * 获取当前代码版本号
-     */
-    public int getAppVersionCode() {
-        int localVersion = 0;
-        try {
-            PackageManager pm = getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(getPackageName(), 0);
-            localVersion = pi.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "获取当前代码版本号", e);
-        }
-        return localVersion;
     }
 
 }

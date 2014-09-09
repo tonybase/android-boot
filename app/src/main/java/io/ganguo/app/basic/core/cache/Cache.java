@@ -1,6 +1,8 @@
 package io.ganguo.app.basic.core.cache;
 
 /**
+ * 缓存接口
+ *
  * Created by zhihui_chen on 14-8-14.
  */
 public interface Cache {
@@ -25,8 +27,6 @@ public interface Cache {
      * 获取缓存数据
      *
      * @param key
-     * @param <K>
-     * @param <V>
      * @return
      */
     public String getString(String key);

@@ -1,4 +1,4 @@
-package io.ganguo.app.basic.ui;
+package io.ganguo.app.basic.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +13,7 @@ import io.ganguo.app.basic.core.http.api.HttpService;
 import io.ganguo.app.basic.core.http.api.StringHttpListener;
 
 
-public class UIHome extends ActionBarActivity {
+public class HomeActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,12 @@ public class UIHome extends ActionBarActivity {
                 http.doGet("http://www.baidu.com", null, new StringHttpListener() {
                     @Override
                     public void onSuccess(String content) {
-                        UIHelper.toastMessage(UIHome.this, content);
+                        UIHelper.toastMessage(HomeActivity.this, content);
                     }
 
                     @Override
                     public void onFailure(String error, Throwable e) {
-                        UIHelper.toastMessage(UIHome.this, error);
+                        UIHelper.toastMessage(HomeActivity.this, error);
                     }
                 }, 5000);
             }

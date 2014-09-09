@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="gcache-1.0">
+  <library name="gcache-1.0.3">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/gcache-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gcache-1.0.3.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

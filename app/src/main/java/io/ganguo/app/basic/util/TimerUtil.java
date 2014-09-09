@@ -41,6 +41,11 @@ public class TimerUtil {
         timer.schedule(adapter, delay);
     }
 
+    /**
+     * 消除运行中的timer
+     *
+     * @param runnable
+     */
     public static void killTimer(Runnable runnable) {
         if (map.containsKey(runnable)) {
             TimerAdapter adapter = map.get(runnable);
@@ -49,6 +54,9 @@ public class TimerUtil {
         }
     }
 
+    /**
+     * 清除所有timer
+     */
     public static void killAll() {
         for (Runnable r : map.keySet()) {
             map.get(r).cancel();
@@ -68,8 +76,7 @@ public class TimerUtil {
             try {
                 runnable.run();
             } catch (Throwable e) {
-                System.out.println("TimerAdapter run timer error!"
-                        + e.getMessage());
+                System.err.println("TimerAdapter run timer error!" + e.getMessage());
             }
         }
     }

@@ -3,10 +3,9 @@ package io.ganguo.app.basic.core.http.api;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.w3c.dom.Text;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,24 +13,47 @@ import java.util.concurrent.ConcurrentHashMap;
 import io.ganguo.app.basic.core.cache.Cache;
 import io.ganguo.app.basic.core.cache.CacheManager;
 import io.ganguo.app.basic.core.http.HttpConstants;
+import io.ganguo.app.basic.util.StringUtils;
 
 /**
  * 网络服务抽象类
- *
+ * <p/>
  * 缓存的实现
- *
+ * <p/>
  * 重复响应控制
- *
+ * <p/>
  * Created by zhihui_chen on 14-8-14.
  */
 public abstract class AbstractHttpService implements HttpService {
     private static final String TAG = AbstractHttpService.class.getName();
+    private Map<String, String> headers = new HashMap<String, String>();
     private Map<String, Stack<HttpListener>> currentQequests;
     private Cache mCache;
 
     public AbstractHttpService() {
         currentQequests = new ConcurrentHashMap<String, Stack<HttpListener>>();
         mCache = CacheManager.getInstance();
+    }
+
+    /**
+     * 获取请求中的头部信息包
+     *
+     * @return
+     */
+    public Map<String, String> getHeaderMap() {
+        Log.d(TAG, "request headers: " + headers.toString());
+        return headers;
+    }
+
+    /**
+     * 添加请求头信息
+     *
+     * @param key
+     * @param value
+     */
+    @Override
+    public void addHeader(String key, String value) {
+        headers.put(key, value);
     }
 
     /**
@@ -44,7 +66,7 @@ public abstract class AbstractHttpService implements HttpService {
      */
     public boolean fireCache(String url, HttpListener<?> httpListener) {
         String cacheContent = mCache.getString(url);
-        if(!TextUtils.isEmpty(cacheContent)) {
+        if (!TextUtils.isEmpty(cacheContent)) {
             httpListener.handleResponse(cacheContent);
             Log.d(TAG, "FoundCache: " + cacheContent);
             return true;
@@ -60,7 +82,7 @@ public abstract class AbstractHttpService implements HttpService {
      * @param cacheTime
      */
     public void putCache(String key, String value, int cacheTime) {
-        if(!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value) && cacheTime > 0) {
+        if (!StringUtils.isEmpty(key) && !StringUtils.isEmpty(value) && cacheTime > 0) {
             mCache.put(key, value, cacheTime);
         }
     }
@@ -117,7 +139,9 @@ public abstract class AbstractHttpService implements HttpService {
         Log.d(TAG, httpListeners.size() + " error: " + error, e);
         if (httpListeners != null) {
             while (!httpListeners.isEmpty()) {
-                httpListeners.pop().onFailure(error, e);
+                HttpListener listener = httpListeners.pop();
+                listener.onFailure(error, e);
+                listener.onFinish();
             }
             currentQequests.remove(url);
         }

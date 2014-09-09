@@ -33,7 +33,7 @@ public class AppManager {
     /**
      * 获取AppManager单一实例
      */
-    public static AppManager getAppManager() {
+    public static AppManager getInstance() {
         if (instance == null) {
             instance = new AppManager();
         }

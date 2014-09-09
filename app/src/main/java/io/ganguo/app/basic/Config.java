@@ -4,11 +4,8 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.os.StatFs;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.io.File;
-
-import io.ganguo.app.basic.exception.NotRegistionContextException;
 
 /**
  * 程序配置文件（读取和写入）
@@ -16,8 +13,6 @@ import io.ganguo.app.basic.exception.NotRegistionContextException;
  * Created by zhihui_chen on 14-8-4.
  */
 public class Config {
-    private static final String TAG = Config.class.getName();
-
     /**
      * 考试宝典数据目录
      */
@@ -26,7 +21,7 @@ public class Config {
      * 临时目录名称
      */
     public final static String APP_TEMP_PATH = "temp";
-
+    private static final String TAG = Config.class.getName();
     private static AppContext context = null;
 
     public static void register(AppContext context) {
@@ -99,14 +94,44 @@ public class Config {
      * 获取Preference设置
      */
     public static SharedPreferences getSharedPreferences() {
-        if (Config.context == null) {
-            try {
-                throw new NotRegistionContextException("Config error!");
-            } catch (NotRegistionContextException e) {
-                Log.e(TAG, "配置类没有注册上AppContext(下文环境)", e);
-            }
-        }
         return PreferenceManager.getDefaultSharedPreferences(Config.context);
     }
 
+    /**
+     * 写入配置信息，需要最后面进行 commit()
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public static void putString(String key, String value) {
+        SharedPreferences sharedPref = getSharedPreferences();
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
+    /**
+     * 读取配置信息
+     *
+     * @param key
+     * @return
+     */
+    public static String getString(String key) {
+        return getSharedPreferences().getString(key, null);
+    }
+
+    /**
+     * 删除配置信息，可以同时删除多个
+     *
+     * @param keys
+     */
+    public static void remove(String... keys) {
+        SharedPreferences sharedPref = getSharedPreferences();
+        SharedPreferences.Editor editor = sharedPref.edit();
+        for (String key : keys) {
+            editor.remove(key);
+        }
+        editor.commit();
+    }
 }

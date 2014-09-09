@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/Config.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/bean/Constants.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/common/UIHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/cache/CacheTime.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/event/Event.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/event/EventListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/event/EventType.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/AbstractHttpService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/EntityHttpListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/HttpListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/HttpService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/JsonObjectHttpListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/RawDataHttpListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/api/StringHttpListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/impl/AsyncHttpImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/http/impl/VolleyImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/response/ApiResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/core/response/PageData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/AndroidUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/Benchmark.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/CollectionUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/CyptoUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/FileUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/GsonUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/ImageUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/NetworkUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/StringUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/io/ganguo/app/basic/util/TimerUtil.java" charset="UTF-8" />
+  </component>
 </project>
 
