@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="1"
-    android:versionName="v1.0"
-    package="io.ganguo.app.basic">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="wiki.tony.andboot">
 
     <application
-        android:name="io.ganguo.app.basic.AppContext"
+        android:name=".AppContext"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.activity.HomeActivity"
-            android:label="@string/app_name">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

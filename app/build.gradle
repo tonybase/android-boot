@@ -1,31 +1,97 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
 
     defaultConfig {
-        applicationId "io.ganguo.app.basic"
-        minSdkVersion 10
-        targetSdkVersion 19
+        applicationId "wiki.tony.andboot"
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    signingConfigs {
+        dev {
+            storeFile file("tony_dev.jks")
+            storePassword "19911001"
+            keyAlias "tony_dev"
+            keyPassword "19911001"
         }
+        prod {
+            storeFile file("tony_prod.jks")
+            storePassword "19911001"
+            keyAlias "tony_prod"
+            keyPassword "19911001"
+        }
+    }
+    buildTypes {
+        // 测试环境
+        debug {
+            applicationIdSuffix ".dev"
+            versionNameSuffix "_dev"
+            manifestPlaceholders = [appLabel: "@string/app_name_dev"] // app名称, 必改
+            buildConfigField "boolean", "ACTIVE_DEV", "true"          // 使用开发环境
+
+            debuggable true // 打开调试 日志输出
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.dev
+        }
+
+        // 生产环境
+        release {
+            manifestPlaceholders = [appLabel: "@string/app_name"]    // app名称, 必改
+            buildConfigField "boolean", "ACTIVE_DEV", "false"        // 使用开发环境
+
+            debuggable false // 关闭调试 日志不输出
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.prod
+        }
+
+        //命名各apk
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                def mApplicationId = variant.mergedFlavor.applicationId + (variant.buildType.applicationIdSuffix == null ? "" : variant.buildType.applicationIdSuffix)
+                def mVersionName = variant.mergedFlavor.versionName + (variant.buildType.versionNameSuffix == null ? "" : variant.buildType.versionNameSuffix)
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    def fileName = "${variant.buildType.name}_${variant.productFlavors[0].name}_${mApplicationId}_${defaultConfig.versionCode}_v${mVersionName}.apk"
+                    output.outputFile = new File(outputFile.parent, fileName)
+                }
+            }
+        }
+    }
+    // 多渠道
+    productFlavors {
+        official {}
+        google_play {}
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    Map<String, String> dependency = rootProject.ext.dependencies;
 
-    compile 'com.android.support:support-v4:19.+'
-    compile 'com.google.guava:guava:18.0'
-    compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.mcxiaoke.volley:library:1.0.6'
-    compile 'com.loopj.android:android-async-http:1.4.5'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.2'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':base')
+    compile project(':data')
+    compile dependency.rxjava
+    compile dependency.rxjavaAndroid
+    compile dependency.retrofit
+    compile dependency.retrofitConverterGson
+    compile dependency.retrofitAdapterRxJava
+    compile dependency.dagger
+    apt dependency.daggerCompiler
+    provided dependency.daggerAnnotation
 }

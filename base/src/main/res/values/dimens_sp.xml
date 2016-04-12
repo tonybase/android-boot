@@ -1,0 +1,53 @@
+<resources>
+
+    <!--
+
+     720x1280 xhdpi
+
+     20px -> sp_10
+     22px -> sp_11
+     24px -> sp_12
+     26px -> sp_13
+     28px -> sp_14
+     30px -> sp_15
+     32px -> sp_16
+     34px -> sp_17
+     36px -> sp_18
+     38px -> sp_19
+     40px -> sp_20
+     42px -> sp_21
+     44px -> sp_22
+     46px -> sp_23
+     48px -> sp_24
+     50px -> sp_25
+     52px -> sp_26
+     54px -> sp_27
+     56px -> sp_28
+     58px -> sp_29
+     60px -> sp_30
+
+     -->
+
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="sp_11">11sp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_13">13sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_15">15sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_17">17sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_19">19sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+    <dimen name="sp_21">21sp</dimen>
+    <dimen name="sp_22">22sp</dimen>
+    <dimen name="sp_23">23sp</dimen>
+    <dimen name="sp_24">24sp</dimen>
+    <dimen name="sp_25">25sp</dimen>
+    <dimen name="sp_26">26sp</dimen>
+    <dimen name="sp_27">27sp</dimen>
+    <dimen name="sp_28">28sp</dimen>
+    <dimen name="sp_29">29sp</dimen>
+    <dimen name="sp_30">30sp</dimen>
+
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndBoot</string>
+
+    <string name="ex_network_disconnected">当前网络不可用，请检查网络设置</string>
+    <string name="ex_network_unknown_host">网络异常，无法连接到服务器</string>
+    <string name="ex_network_timeout">网络异常，连接服务器超时</string>
+    <string name="ex_network_socket">网络异常，连接服务器失败</string>
+    <string name="ex_network_default">网络异常，连接服务器失败</string>
+    <string name="ex_network_convert">接口错误，转换数据失败</string>
+</resources>

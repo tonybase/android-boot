@@ -1,0 +1,373 @@
+<resources>
+
+    <string name="screenSize">defaultValues</string>
+
+    <!--
+
+          720x1280 xhdpi 以这个为标准
+
+            2px -> dp_1
+            4px -> dp_2
+            6px -> dp_3
+            8px -> dp_4
+            10px -> dp_5
+            12px -> dp_6
+            14px -> dp_7
+            16px -> dp_8
+            18px -> dp_9
+            20px -> dp_10
+            22px -> dp_11
+            24px -> dp_12
+            26px -> dp_13
+            28px -> dp_14
+            30px -> dp_15
+            32px -> dp_16
+            34px -> dp_17
+            36px -> dp_18
+            38px -> dp_19
+            40px -> dp_20
+            42px -> dp_21
+            44px -> dp_22
+            46px -> dp_23
+            48px -> dp_24
+            50px -> dp_25
+            52px -> dp_26
+            54px -> dp_27
+            56px -> dp_28
+            58px -> dp_29
+            60px -> dp_30
+            62px -> dp_31
+            64px -> dp_32
+            66px -> dp_33
+            68px -> dp_34
+            70px -> dp_35
+            72px -> dp_36
+            74px -> dp_37
+            76px -> dp_38
+            78px -> dp_39
+            80px -> dp_40
+            82px -> dp_41
+            84px -> dp_42
+            86px -> dp_43
+            88px -> dp_44
+            90px -> dp_45
+            92px -> dp_46
+            94px -> dp_47
+            96px -> dp_48
+            98px -> dp_49
+            100px -> dp_50
+            102px -> dp_51
+            104px -> dp_52
+            106px -> dp_53
+            108px -> dp_54
+            110px -> dp_55
+            112px -> dp_56
+            114px -> dp_57
+            116px -> dp_58
+            118px -> dp_59
+            120px -> dp_60
+            122px -> dp_61
+            124px -> dp_62
+            126px -> dp_63
+            128px -> dp_64
+            130px -> dp_65
+            132px -> dp_66
+            134px -> dp_67
+            136px -> dp_68
+            138px -> dp_69
+            140px -> dp_70
+            142px -> dp_71
+            144px -> dp_72
+            146px -> dp_73
+            148px -> dp_74
+            150px -> dp_75
+            152px -> dp_76
+            154px -> dp_77
+            156px -> dp_78
+            158px -> dp_79
+            160px -> dp_80
+            162px -> dp_81
+            164px -> dp_82
+            166px -> dp_83
+            168px -> dp_84
+            170px -> dp_85
+            172px -> dp_86
+            174px -> dp_87
+            176px -> dp_88
+            178px -> dp_89
+            180px -> dp_90
+            182px -> dp_91
+            184px -> dp_92
+            186px -> dp_93
+            188px -> dp_94
+            190px -> dp_95
+            192px -> dp_96
+            194px -> dp_97
+            196px -> dp_98
+            198px -> dp_99
+            200px -> dp_100
+            202px -> dp_101
+            204px -> dp_102
+            206px -> dp_103
+            208px -> dp_104
+            210px -> dp_105
+            212px -> dp_106
+            214px -> dp_107
+            216px -> dp_108
+            218px -> dp_109
+            220px -> dp_110
+            222px -> dp_111
+            224px -> dp_112
+            226px -> dp_113
+            228px -> dp_114
+            230px -> dp_115
+            232px -> dp_116
+            234px -> dp_117
+            236px -> dp_118
+            238px -> dp_119
+            240px -> dp_120
+            242px -> dp_121
+            244px -> dp_122
+            246px -> dp_123
+            248px -> dp_124
+            250px -> dp_125
+            252px -> dp_126
+            254px -> dp_127
+            256px -> dp_128
+            258px -> dp_129
+            260px -> dp_130
+            262px -> dp_131
+            264px -> dp_132
+            266px -> dp_133
+            268px -> dp_134
+            270px -> dp_135
+            272px -> dp_136
+            274px -> dp_137
+            276px -> dp_138
+            278px -> dp_139
+            280px -> dp_140
+            282px -> dp_141
+            284px -> dp_142
+            286px -> dp_143
+            288px -> dp_144
+            290px -> dp_145
+            292px -> dp_146
+            294px -> dp_147
+            296px -> dp_148
+            298px -> dp_149
+            300px -> dp_150
+            302px -> dp_151
+            304px -> dp_152
+            306px -> dp_153
+            308px -> dp_154
+            310px -> dp_155
+            312px -> dp_156
+            314px -> dp_157
+            316px -> dp_158
+            318px -> dp_159
+            320px -> dp_160
+            322px -> dp_161
+            324px -> dp_162
+            326px -> dp_163
+            328px -> dp_164
+            330px -> dp_165
+            332px -> dp_166
+            334px -> dp_167
+            336px -> dp_168
+            338px -> dp_169
+            340px -> dp_170
+            342px -> dp_171
+            344px -> dp_172
+            346px -> dp_173
+            348px -> dp_174
+            350px -> dp_175
+            352px -> dp_176
+            354px -> dp_177
+            356px -> dp_178
+            358px -> dp_179
+            360px -> dp_180
+            362px -> dp_181
+            364px -> dp_182
+            366px -> dp_183
+            368px -> dp_184
+            370px -> dp_185
+            372px -> dp_186
+            374px -> dp_187
+            376px -> dp_188
+            378px -> dp_189
+            380px -> dp_190
+            382px -> dp_191
+            384px -> dp_192
+            386px -> dp_193
+            388px -> dp_194
+            390px -> dp_195
+            392px -> dp_196
+            394px -> dp_197
+            396px -> dp_198
+            398px -> dp_199
+            400px -> dp_200
+            402px -> dp_201
+            404px -> dp_202
+            406px -> dp_203
+            408px -> dp_204
+            410px -> dp_205
+            412px -> dp_206
+            414px -> dp_207
+            416px -> dp_208
+            418px -> dp_209
+            420px -> dp_210
+            422px -> dp_211
+            424px -> dp_212
+            426px -> dp_213
+            428px -> dp_214
+            430px -> dp_215
+            432px -> dp_216
+            434px -> dp_217
+            436px -> dp_218
+            438px -> dp_219
+            440px -> dp_220
+            442px -> dp_221
+            444px -> dp_222
+            446px -> dp_223
+            448px -> dp_224
+            450px -> dp_225
+            452px -> dp_226
+            454px -> dp_227
+            456px -> dp_228
+            458px -> dp_229
+            460px -> dp_230
+            462px -> dp_231
+            464px -> dp_232
+            466px -> dp_233
+            468px -> dp_234
+            470px -> dp_235
+            472px -> dp_236
+            474px -> dp_237
+            476px -> dp_238
+            478px -> dp_239
+            480px -> dp_240
+            482px -> dp_241
+            484px -> dp_242
+            486px -> dp_243
+            488px -> dp_244
+            490px -> dp_245
+            492px -> dp_246
+            494px -> dp_247
+            496px -> dp_248
+            498px -> dp_249
+            500px -> dp_250
+            502px -> dp_251
+            504px -> dp_252
+            506px -> dp_253
+            508px -> dp_254
+            510px -> dp_255
+            512px -> dp_256
+            514px -> dp_257
+            516px -> dp_258
+            518px -> dp_259
+            520px -> dp_260
+            522px -> dp_261
+            524px -> dp_262
+            526px -> dp_263
+            528px -> dp_264
+            530px -> dp_265
+            532px -> dp_266
+            534px -> dp_267
+            536px -> dp_268
+            538px -> dp_269
+            540px -> dp_270
+            542px -> dp_271
+            544px -> dp_272
+            546px -> dp_273
+            548px -> dp_274
+            550px -> dp_275
+            552px -> dp_276
+            554px -> dp_277
+            556px -> dp_278
+            558px -> dp_279
+            560px -> dp_280
+            562px -> dp_281
+            564px -> dp_282
+            566px -> dp_283
+            568px -> dp_284
+            570px -> dp_285
+            572px -> dp_286
+            574px -> dp_287
+            576px -> dp_288
+            578px -> dp_289
+            580px -> dp_290
+            582px -> dp_291
+            584px -> dp_292
+            586px -> dp_293
+            588px -> dp_294
+            590px -> dp_295
+            592px -> dp_296
+            594px -> dp_297
+            596px -> dp_298
+            598px -> dp_299
+            600px -> dp_300
+
+          -->
+
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_7">7dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_9">9dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_11">11dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_13">13dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_17">17dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
+    <dimen name="dp_19">19dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_21">21dp</dimen>
+    <dimen name="dp_22">22dp</dimen>
+    <dimen name="dp_23">23dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_26">26dp</dimen>
+    <dimen name="dp_27">27dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
+    <dimen name="dp_29">29dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_31">31dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_33">33dp</dimen>
+    <dimen name="dp_34">34dp</dimen>
+    <dimen name="dp_35">35dp</dimen>
+    <dimen name="dp_36">36dp</dimen>
+    <dimen name="dp_37">37dp</dimen>
+    <dimen name="dp_38">38dp</dimen>
+    <dimen name="dp_39">39dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_41">41dp</dimen>
+    <dimen name="dp_42">42dp</dimen>
+    <dimen name="dp_43">43dp</dimen>
+    <dimen name="dp_44">44dp</dimen>
+    <dimen name="dp_45">45dp</dimen>
+    <dimen name="dp_46">46dp</dimen>
+    <dimen name="dp_47">47dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
+    <dimen name="dp_49">49dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_51">51dp</dimen>
+    <dimen name="dp_52">52dp</dimen>
+    <dimen name="dp_53">53dp</dimen>
+    <dimen name="dp_54">54dp</dimen>
+    <dimen name="dp_55">55dp</dimen>
+    <dimen name="dp_56">56dp</dimen>
+    <dimen name="dp_57">57dp</dimen>
+    <dimen name="dp_58">58dp</dimen>
+    <dimen name="dp_59">59dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+
+</resources>

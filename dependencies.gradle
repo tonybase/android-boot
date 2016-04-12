@@ -1,0 +1,43 @@
+// Note: 定义全局的gradle依赖包, 统一管理lib版本号
+
+ext {
+    compile_sdk_version = 23
+    build_tools_version = '23.0.2'
+    min_sdk_version = 14
+    target_sdk_version = 23
+
+    support_version = '23.1.0'
+    dagger_version = '2.0.2'
+    rxjava_version = '1.1.0'
+    retrofit_version = '2.0.0'
+    dependencies = [
+            v4                   : "com.android.support:support-v4:$support_version",
+            v7                   : "com.android.support:appcompat-v7:$support_version",
+            recyclerView         : "com.android.support:recyclerview-v7:$support_version",
+            annotations          : "com.android.support:support-annotations:$support_version",
+
+            dagger               : "com.google.dagger:dagger:$dagger_version",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:$dagger_version",
+            daggerAnnotation     : "javax.annotation:jsr250-api:1.0",
+
+            rxjava               : "io.reactivex:rxjava:$rxjava_version",
+            rxjavaAndroid        : "io.reactivex:rxandroid:$rxjava_version",
+
+            retrofit             : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava:$retrofit_version",
+
+            universalImageLoader : 'com.nostra13.universalimageloader:universal-image-loader:1.9.4',
+            glide                : 'com.github.bumptech.glide:glide:3.7.0',
+            picasso              : 'com.squareup.picasso:picasso:2.5.2',
+            fresco               : 'com.facebook.fresco:fresco:0.9.0',
+
+            systembartint        : 'com.readystatesoftware.systembartint:systembartint:1.0.4',
+            materialDialogs      : 'com.github.afollestad.material-dialogs:core:0.8.5.7@aar',
+            yearclass            : 'com.facebook.device.yearclass:yearclass:1.0.1',
+            gson                 : 'com.google.code.gson:gson:2.6.2',
+            otto                 : 'com.squareup:otto:1.3.8',
+            logger               : 'wiki.tony:andlog:1.0.0',
+            junit                : 'junit:junit:4.12'
+    ]
+}
