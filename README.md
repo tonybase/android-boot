@@ -2,6 +2,20 @@
 # AndBoot
 
     dagger2 + rxjava + retrofit / MVP
+
+# Dependencies
+
+    dependencies.gradle
+    
+    // build.gradle
+    Map<String, String> dependency = rootProject.ext.dependencies;
+
+    compile dependency.v4
+    compile dependency.v7
+    compile dependency.gson
+    compile dependency.guava
+    compile dependency.logger
+    compile dependency.junit
     
 # Tools (guava)
     
