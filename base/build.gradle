@@ -25,6 +25,7 @@ dependencies {
     compile dependency.v4
     compile dependency.v7
     compile dependency.gson
+    compile dependency.guava
     compile dependency.logger
     compile dependency.junit
 }
